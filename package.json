@@ -1,0 +1,26 @@
+{
+  "name": "leadconduit-integration-soap",
+  "version": "0.0.0",
+  "description": "LeadConduit SOAP integration",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/activeprospect/leadconduit-integration-soap.git"
+  },
+  "license": "CC-BY-NC-ND-4.0",
+  "bugs": {
+    "url": "https://github.com/activeprospect/leadconduit-integration-soap/issues"
+  },
+  "homepage": "https://github.com/activeprospect/leadconduit-integration-soap#readme",
+  "dependencies": {
+    "leadconduit-custom": "^2.16.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "3.5.0",
+    "nock": "^9.0.14"
+  }
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <AddLeadResponse xmlns="http://donkey/ws.asmx/">
+            <AddLeadXMLResult>
+                &lt;Response&gt;
+                    &lt;Result&gt;true&lt;/Result&gt;
+                    &lt;Message&gt;some message&lt;/Message&gt;
+                    &lt;LeadId&gt;12345&lt;/LeadId&gt;
+                    &lt;Empty/&gt;
+                    &lt;Multi&gt;
+                        &lt;Foo&gt;1&lt;/Foo&gt;
+                        &lt;Foo&gt;2&lt;/Foo&gt;
+                    &lt;/Multi&gt;
+                &lt;/Response&gt;
+            </AddLeadXMLResult>
+        </AddLeadResponse>
+    </soap:Body>
+</soap:Envelope>
