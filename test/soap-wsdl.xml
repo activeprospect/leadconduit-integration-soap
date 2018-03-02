@@ -1,0 +1,1449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://donkey/ws.asmx/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://donkey/ws.asmx/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:types>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://donkey/ws.asmx/">
+            <s:element name="GetCampaigns">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="APIId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="TransactionId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="CompanyId" type="s:int" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetCampaignsResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetCampaignsResult" type="tns:CampaignResponse" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="CampaignResponse">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:GenericResponse">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="Campaigns" type="tns:ArrayOfCampaign" />
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="GenericResponse">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfCampaign">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="Campaign" nillable="true" type="tns:Campaign" />
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="Campaign">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="CampaignId" type="s:int" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+                    <s:element minOccurs="1" maxOccurs="1" name="Privacy" type="s:boolean" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetStates">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="APIId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="TransactionId" nillable="true" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetStatesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetStatesResult" type="tns:StateListResponse" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="StateListResponse">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:GenericResponse">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="States" type="tns:ArrayOfState" />
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="ArrayOfState">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="State" nillable="true" type="tns:State" />
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="State">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Abbreviation" type="s:string" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetCountries">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="APIId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="TransactionId" nillable="true" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetCountriesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetCountriesResult" type="tns:CountryListResponse" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="CountryListResponse">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:GenericResponse">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="Countries" type="tns:ArrayOfCountry" />
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="ArrayOfCountry">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="Country" nillable="true" type="tns:Country" />
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="Country">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Abbreviation" type="s:string" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetAssignedToCompanies">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="APIId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="TransactionId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="CampaignId" type="s:int" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetAssignedToCompaniesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetAssignedToCompaniesResult" type="tns:AssignedToCompanyResponse" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="AssignedToCompanyResponse">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:GenericResponse">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="Companies" type="tns:ArrayOfCompany" />
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="ArrayOfCompany">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="Company" nillable="true" type="tns:Company" />
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="Company">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="CompanyId" type="s:int" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetAssignedToUsers">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="APIId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="TransactionId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="CompanyId" type="s:int" />
+                        <s:element minOccurs="1" maxOccurs="1" name="CampaignId" type="s:int" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetAssignedToUsersResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetAssignedToUsersResult" type="tns:AssignedToUserResponse" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="AssignedToUserResponse">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:GenericResponse">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="Users" type="tns:ArrayOfUser" />
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="ArrayOfUser">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="User">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="UserId" type="s:int" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetLeadLogTypes">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="APIId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="TransactionId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="CompanyId" type="s:int" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetLeadLogTypesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetLeadLogTypesResult" type="tns:LeadLogTypeResponse" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="LeadLogTypeResponse">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:GenericResponse">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="LeadLogTypes" type="tns:ArrayOfLeadLogType" />
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="ArrayOfLeadLogType">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="LeadLogType" nillable="true" type="tns:LeadLogType" />
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="LeadLogType">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="LogTypeId" type="s:int" />
+                    <s:element minOccurs="0" maxOccurs="1" name="LogTypeText" type="s:string" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetLeadMilestones">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="APIId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="TransactionId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="CampaignId" type="s:int" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetLeadMilestonesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetLeadMilestonesResult" type="tns:LeadMilestoneResponse" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="LeadMilestoneResponse">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:GenericResponse">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="LeadMilestones" type="tns:ArrayOfLeadMilestone" />
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="ArrayOfLeadMilestone">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="LeadMilestone" nillable="true" type="tns:LeadMilestone" />
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="LeadMilestone">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="MilestoneId" type="s:int" />
+                    <s:element minOccurs="0" maxOccurs="1" name="MilestoneText" type="s:string" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetCustomDropdowns">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="APIId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="TransactionId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="CampaignId" type="s:int" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetCustomDropdownsResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetCustomDropdownsResult" type="tns:DropdownsResponse" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="DropdownsResponse">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:GenericResponse">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="Dropdowns" type="tns:ArrayOfDropdown" />
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="ArrayOfDropdown">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="Dropdown" nillable="true" type="tns:Dropdown" />
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="Dropdown">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Values" type="tns:ArrayOfString" />
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfString">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetLeadStatuses">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="APIId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="TransactionId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="CompanyId" type="s:int" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetLeadStatusesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetLeadStatusesResult" type="tns:LeadStatusResponse" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="LeadStatusResponse">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:GenericResponse">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="LeadStatuses" type="tns:ArrayOfLeadStatus" />
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="ArrayOfLeadStatus">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="LeadStatus" nillable="true" type="tns:LeadStatus" />
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="LeadStatus">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="StatusId" type="s:int" />
+                    <s:element minOccurs="0" maxOccurs="1" name="StatusText" type="s:string" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetCustomColumnNames">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="APIId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="TransactionId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="CampaignId" type="s:int" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetCustomColumnNamesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetCustomColumnNamesResult" type="tns:CustomColumnNamesResponse" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="CustomColumnNamesResponse">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:GenericResponse">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom1" type="s:string" />
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom2" type="s:string" />
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom3" type="s:string" />
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom4" type="s:string" />
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom5" type="s:string" />
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom6" type="s:string" />
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom7" type="s:string" />
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom8" type="s:string" />
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom9" type="s:string" />
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom10" type="s:string" />
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom11" type="s:string" />
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom12" type="s:string" />
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom13" type="s:string" />
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom14" type="s:string" />
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom15" type="s:string" />
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom16" type="s:string" />
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom17" type="s:string" />
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom18" type="s:string" />
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom19" type="s:string" />
+                            <s:element minOccurs="0" maxOccurs="1" name="Custom20" type="s:string" />
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:element name="GetCustomColumns">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="APIId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="TransactionId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="CampaignId" type="s:int" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetCustomColumnsResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetCustomColumnsResult" type="tns:CustomColumnsResponse" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="CustomColumnsResponse">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Columns" type="tns:ArrayOfCustomColumn" />
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfCustomColumn">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="CustomColumn" nillable="true" type="tns:CustomColumn" />
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="CustomColumn">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+                    <s:element minOccurs="1" maxOccurs="1" name="IsDate" type="s:boolean" />
+                    <s:element minOccurs="1" maxOccurs="1" name="IsDropdown" type="s:boolean" />
+                    <s:element minOccurs="0" maxOccurs="1" name="DropdownValues" type="tns:ArrayOfString" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetLeadById">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="APIId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="TransactionId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="LeadId" type="s:int" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetLeadByIdResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="GetLeadByIdResult" nillable="true" type="tns:GetLeadByIdResponseType" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="GetLeadByIdResponseType">
+                <s:complexContent mixed="false">
+                    <s:extension base="tns:GenericResponse">
+                        <s:sequence>
+                            <s:element minOccurs="0" maxOccurs="1" name="Lead" type="tns:LeadInfo" />
+                        </s:sequence>
+                    </s:extension>
+                </s:complexContent>
+            </s:complexType>
+            <s:complexType name="LeadInfo">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="LeadId" type="s:string" />
+                    <s:element minOccurs="1" maxOccurs="1" name="CampaignId" type="s:int" />
+                    <s:element minOccurs="1" maxOccurs="1" name="StatusId" type="s:int" />
+                    <s:element minOccurs="1" maxOccurs="1" name="MilestoneId" type="s:int" />
+                    <s:element minOccurs="1" maxOccurs="1" name="AssignedToCompanyId" type="s:int" />
+                    <s:element minOccurs="1" maxOccurs="1" name="AssignedToUserId" type="s:int" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Address3" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Ext" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Website" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ContactName" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Revenue" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ContractDate" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom1" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom2" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom3" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom4" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom5" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom6" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom7" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom8" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom9" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom10" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom11" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom12" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom13" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom14" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom15" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom16" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom17" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom18" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom19" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom20" type="s:string" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="GetCustomColumnsByProviderAndType">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="APIId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="TransactionId" nillable="true" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="ProviderId" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="LeadType" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="GetCustomColumnsByProviderAndTypeResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="GetCustomColumnsByProviderAndTypeResult" type="tns:CustomColumnsResponse" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="UpdateLead">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="Lead" nillable="true" type="tns:LeadUpdateRequest" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="LeadUpdateRequest">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="APIId" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="TransactionId" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="LeadId" type="s:string" />
+                    <s:element minOccurs="1" maxOccurs="1" name="CampaignId" type="s:int" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Address3" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Ext" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Website" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ContactName" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Revenue" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ContractDate" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom1" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom2" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom3" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom4" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom5" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom6" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom7" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom8" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom9" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom10" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom11" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom12" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom13" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom14" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom15" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom16" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom17" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom18" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom19" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom20" type="s:string" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="UpdateLeadResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="UpdateLeadResult" type="tns:LeadUpdateResponse" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="LeadUpdateResponse">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="AddLead">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="Lead" nillable="true" type="tns:LeadAddRequest" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="LeadAddRequest">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="APIId" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="TransactionId" type="s:string" />
+                    <s:element minOccurs="1" maxOccurs="1" name="CampaignId" type="s:int" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Address3" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Ext" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Website" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ContactName" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Revenue" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ContractDate" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom1" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom2" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom3" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom4" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom5" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom6" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom7" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom8" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom9" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom10" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom11" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom12" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom13" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom14" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom15" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom16" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom17" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom18" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom19" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom20" type="s:string" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="AddLeadResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="AddLeadResult" type="tns:LeadAddResponse" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="LeadAddResponse">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+                    <s:element minOccurs="1" maxOccurs="1" name="LeadId" type="s:int" />
+                </s:sequence>
+            </s:complexType>
+
+            <s:element name="AddLeadXML">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="LeadXML" nillable="true" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="AddLeadXMLResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="AddLeadXMLResult" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="AddLeadLog">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="LeadLog" nillable="true" type="tns:LeadLogAddRequest" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="LeadLogAddRequest">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="APIId" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="TransactionId" type="s:string" />
+                    <s:element minOccurs="1" maxOccurs="1" name="CampaignId" type="s:int" />
+                    <s:element minOccurs="1" maxOccurs="1" name="LeadId" type="s:int" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+                    <s:element minOccurs="1" maxOccurs="1" name="AssignedToCompanyId" type="s:int" />
+                    <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ContactName" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+                    <s:element minOccurs="1" maxOccurs="1" name="LogType" type="s:int" />
+                    <s:element minOccurs="1" maxOccurs="1" name="AssignedToUser" type="s:int" />
+                    <s:element minOccurs="1" maxOccurs="1" name="MilestoneId" type="s:int" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="AddLeadLogResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="AddLeadLogResult" type="tns:LeadLogAddResponse" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="LeadLogAddResponse">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+                    <s:element minOccurs="1" maxOccurs="1" name="LeadLogId" type="s:int" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="AddReQuoteHistory">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="APIId" nillable="true" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="TransactionId" nillable="true" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="ProviderId" type="s:string" />
+                        <s:element minOccurs="0" maxOccurs="1" name="RequestId" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="LeadId" type="s:int" />
+                        <s:element minOccurs="0" maxOccurs="1" name="QuoteId" type="s:string" />
+                        <s:element minOccurs="1" maxOccurs="1" name="QuotedAmount" type="s:decimal" />
+                        <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="AddReQuoteHistoryResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="AddReQuoteHistoryResult" type="tns:ReQuoteHistoryAddResponse" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ReQuoteHistoryAddResponse">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+                    <s:element minOccurs="1" maxOccurs="1" name="LeadId" type="s:int" />
+                    <s:element minOccurs="1" maxOccurs="1" name="LeadLogId" type="s:int" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="AddLeadAndHistory">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="Lead" nillable="true" type="tns:LeadAndHistoryAddRequest" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="LeadAndHistoryAddRequest">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="APIId" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="TransactionId" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ProviderId" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="LeadType" type="s:string" />
+                    <s:element minOccurs="1" maxOccurs="1" name="LeadId" type="s:int" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Address3" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Ext" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Website" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ContactName" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Revenue" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ContractDate" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom1" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom2" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom3" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom4" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom5" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom6" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom7" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom8" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom9" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom10" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom11" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom12" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom13" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom14" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom15" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom16" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom17" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom18" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom19" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom20" type="s:string" />
+                    <s:element minOccurs="1" maxOccurs="1" name="ExistingLeadAddHistoryOnly" type="s:boolean" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="AddLeadAndHistoryResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="AddLeadAndHistoryResult" type="tns:LeadAndHistoryAddResponse" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="LeadAndHistoryAddResponse">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="LeadResult" type="s:boolean" />
+                    <s:element minOccurs="0" maxOccurs="1" name="LeadMessage" type="s:string" />
+                    <s:element minOccurs="1" maxOccurs="1" name="HistoryResult" type="s:boolean" />
+                    <s:element minOccurs="0" maxOccurs="1" name="HistoryMessage" type="s:string" />
+                    <s:element minOccurs="1" maxOccurs="1" name="LeadId" type="s:int" />
+                    <s:element minOccurs="1" maxOccurs="1" name="LeadLogId" type="s:int" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="AddLeadList">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="LeadList" nillable="true" type="tns:LeadListAddRequest" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="LeadListAddRequest">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="APIId" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="TransactionId" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ProviderId" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="LeadType" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Leads" type="tns:ArrayOfLead" />
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfLead">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="Lead" nillable="true" type="tns:Lead" />
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="Lead">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Address3" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Ext" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Website" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ContactName" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Revenue" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="ContractDate" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom1" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom2" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom3" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom4" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom5" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom6" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom7" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom8" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom9" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom10" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom11" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom12" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom13" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom14" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom15" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom16" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom17" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom18" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom19" type="s:string" />
+                    <s:element minOccurs="0" maxOccurs="1" name="Custom20" type="s:string" />
+                </s:sequence>
+            </s:complexType>
+            <s:element name="AddLeadListResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="AddLeadListResult" type="tns:LeadListAddResponse" />
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="LeadListAddResponse">
+                <s:sequence>
+                    <s:element minOccurs="1" maxOccurs="1" name="LeadListResult" type="s:boolean" />
+                    <s:element minOccurs="0" maxOccurs="1" name="LeadListMessage" type="s:string" />
+                    <s:element minOccurs="1" maxOccurs="1" name="LeadsSent" type="s:int" />
+                    <s:element minOccurs="1" maxOccurs="1" name="LeadsAdded" type="s:int" />
+                </s:sequence>
+            </s:complexType>
+        </s:schema>
+    </wsdl:types>
+    <wsdl:message name="GetCampaignsSoapIn">
+        <wsdl:part name="parameters" element="tns:GetCampaigns" />
+    </wsdl:message>
+    <wsdl:message name="GetCampaignsSoapOut">
+        <wsdl:part name="parameters" element="tns:GetCampaignsResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetStatesSoapIn">
+        <wsdl:part name="parameters" element="tns:GetStates" />
+    </wsdl:message>
+    <wsdl:message name="GetStatesSoapOut">
+        <wsdl:part name="parameters" element="tns:GetStatesResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetCountriesSoapIn">
+        <wsdl:part name="parameters" element="tns:GetCountries" />
+    </wsdl:message>
+    <wsdl:message name="GetCountriesSoapOut">
+        <wsdl:part name="parameters" element="tns:GetCountriesResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetAssignedToCompaniesSoapIn">
+        <wsdl:part name="parameters" element="tns:GetAssignedToCompanies" />
+    </wsdl:message>
+    <wsdl:message name="GetAssignedToCompaniesSoapOut">
+        <wsdl:part name="parameters" element="tns:GetAssignedToCompaniesResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetAssignedToUsersSoapIn">
+        <wsdl:part name="parameters" element="tns:GetAssignedToUsers" />
+    </wsdl:message>
+    <wsdl:message name="GetAssignedToUsersSoapOut">
+        <wsdl:part name="parameters" element="tns:GetAssignedToUsersResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetLeadLogTypesSoapIn">
+        <wsdl:part name="parameters" element="tns:GetLeadLogTypes" />
+    </wsdl:message>
+    <wsdl:message name="GetLeadLogTypesSoapOut">
+        <wsdl:part name="parameters" element="tns:GetLeadLogTypesResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetLeadMilestonesSoapIn">
+        <wsdl:part name="parameters" element="tns:GetLeadMilestones" />
+    </wsdl:message>
+    <wsdl:message name="GetLeadMilestonesSoapOut">
+        <wsdl:part name="parameters" element="tns:GetLeadMilestonesResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetCustomDropdownsSoapIn">
+        <wsdl:part name="parameters" element="tns:GetCustomDropdowns" />
+    </wsdl:message>
+    <wsdl:message name="GetCustomDropdownsSoapOut">
+        <wsdl:part name="parameters" element="tns:GetCustomDropdownsResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetLeadStatusesSoapIn">
+        <wsdl:part name="parameters" element="tns:GetLeadStatuses" />
+    </wsdl:message>
+    <wsdl:message name="GetLeadStatusesSoapOut">
+        <wsdl:part name="parameters" element="tns:GetLeadStatusesResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetCustomColumnNamesSoapIn">
+        <wsdl:part name="parameters" element="tns:GetCustomColumnNames" />
+    </wsdl:message>
+    <wsdl:message name="GetCustomColumnNamesSoapOut">
+        <wsdl:part name="parameters" element="tns:GetCustomColumnNamesResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetCustomColumnsSoapIn">
+        <wsdl:part name="parameters" element="tns:GetCustomColumns" />
+    </wsdl:message>
+    <wsdl:message name="GetCustomColumnsSoapOut">
+        <wsdl:part name="parameters" element="tns:GetCustomColumnsResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetLeadByIdSoapIn">
+        <wsdl:part name="parameters" element="tns:GetLeadById" />
+    </wsdl:message>
+    <wsdl:message name="GetLeadByIdSoapOut">
+        <wsdl:part name="parameters" element="tns:GetLeadByIdResponse" />
+    </wsdl:message>
+    <wsdl:message name="GetCustomColumnsByProviderAndTypeSoapIn">
+        <wsdl:part name="parameters" element="tns:GetCustomColumnsByProviderAndType" />
+    </wsdl:message>
+    <wsdl:message name="GetCustomColumnsByProviderAndTypeSoapOut">
+        <wsdl:part name="parameters" element="tns:GetCustomColumnsByProviderAndTypeResponse" />
+    </wsdl:message>
+    <wsdl:message name="UpdateLeadSoapIn">
+        <wsdl:part name="parameters" element="tns:UpdateLead" />
+    </wsdl:message>
+    <wsdl:message name="UpdateLeadSoapOut">
+        <wsdl:part name="parameters" element="tns:UpdateLeadResponse" />
+    </wsdl:message>
+    <wsdl:message name="AddLeadSoapIn">
+        <wsdl:part name="parameters" element="tns:AddLead" />
+    </wsdl:message>
+    <wsdl:message name="AddLeadSoapOut">
+        <wsdl:part name="parameters" element="tns:AddLeadResponse" />
+    </wsdl:message>
+    <wsdl:message name="AddLeadXMLSoapIn">
+        <wsdl:part name="parameters" element="tns:AddLeadXML" />
+    </wsdl:message>
+    <wsdl:message name="AddLeadXMLSoapOut">
+        <wsdl:part name="parameters" element="tns:AddLeadXMLResponse" />
+    </wsdl:message>
+    <wsdl:message name="AddLeadLogSoapIn">
+        <wsdl:part name="parameters" element="tns:AddLeadLog" />
+    </wsdl:message>
+    <wsdl:message name="AddLeadLogSoapOut">
+        <wsdl:part name="parameters" element="tns:AddLeadLogResponse" />
+    </wsdl:message>
+    <wsdl:message name="AddReQuoteHistorySoapIn">
+        <wsdl:part name="parameters" element="tns:AddReQuoteHistory" />
+    </wsdl:message>
+    <wsdl:message name="AddReQuoteHistorySoapOut">
+        <wsdl:part name="parameters" element="tns:AddReQuoteHistoryResponse" />
+    </wsdl:message>
+    <wsdl:message name="AddLeadAndHistorySoapIn">
+        <wsdl:part name="parameters" element="tns:AddLeadAndHistory" />
+    </wsdl:message>
+    <wsdl:message name="AddLeadAndHistorySoapOut">
+        <wsdl:part name="parameters" element="tns:AddLeadAndHistoryResponse" />
+    </wsdl:message>
+    <wsdl:message name="AddLeadListSoapIn">
+        <wsdl:part name="parameters" element="tns:AddLeadList" />
+    </wsdl:message>
+    <wsdl:message name="AddLeadListSoapOut">
+        <wsdl:part name="parameters" element="tns:AddLeadListResponse" />
+    </wsdl:message>
+    <wsdl:portType name="wsSoap">
+        <wsdl:operation name="GetCampaigns">
+            <wsdl:input message="tns:GetCampaignsSoapIn" />
+            <wsdl:output message="tns:GetCampaignsSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="GetStates">
+            <wsdl:input message="tns:GetStatesSoapIn" />
+            <wsdl:output message="tns:GetStatesSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="GetCountries">
+            <wsdl:input message="tns:GetCountriesSoapIn" />
+            <wsdl:output message="tns:GetCountriesSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="GetAssignedToCompanies">
+            <wsdl:input message="tns:GetAssignedToCompaniesSoapIn" />
+            <wsdl:output message="tns:GetAssignedToCompaniesSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="GetAssignedToUsers">
+            <wsdl:input message="tns:GetAssignedToUsersSoapIn" />
+            <wsdl:output message="tns:GetAssignedToUsersSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="GetLeadLogTypes">
+            <wsdl:input message="tns:GetLeadLogTypesSoapIn" />
+            <wsdl:output message="tns:GetLeadLogTypesSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="GetLeadMilestones">
+            <wsdl:input message="tns:GetLeadMilestonesSoapIn" />
+            <wsdl:output message="tns:GetLeadMilestonesSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="GetCustomDropdowns">
+            <wsdl:input message="tns:GetCustomDropdownsSoapIn" />
+            <wsdl:output message="tns:GetCustomDropdownsSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="GetLeadStatuses">
+            <wsdl:input message="tns:GetLeadStatusesSoapIn" />
+            <wsdl:output message="tns:GetLeadStatusesSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="GetCustomColumnNames">
+            <wsdl:input message="tns:GetCustomColumnNamesSoapIn" />
+            <wsdl:output message="tns:GetCustomColumnNamesSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="GetCustomColumns">
+            <wsdl:input message="tns:GetCustomColumnsSoapIn" />
+            <wsdl:output message="tns:GetCustomColumnsSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="GetLeadById">
+            <wsdl:input message="tns:GetLeadByIdSoapIn" />
+            <wsdl:output message="tns:GetLeadByIdSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="GetCustomColumnsByProviderAndType">
+            <wsdl:input message="tns:GetCustomColumnsByProviderAndTypeSoapIn" />
+            <wsdl:output message="tns:GetCustomColumnsByProviderAndTypeSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="UpdateLead">
+            <wsdl:input message="tns:UpdateLeadSoapIn" />
+            <wsdl:output message="tns:UpdateLeadSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="AddLead">
+            <wsdl:input message="tns:AddLeadSoapIn" />
+            <wsdl:output message="tns:AddLeadSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="AddLeadXML">
+            <wsdl:input message="tns:AddLeadXMLSoapIn" />
+            <wsdl:output message="tns:AddLeadXMLSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="AddLeadLog">
+            <wsdl:input message="tns:AddLeadLogSoapIn" />
+            <wsdl:output message="tns:AddLeadLogSoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="AddReQuoteHistory">
+            <wsdl:input message="tns:AddReQuoteHistorySoapIn" />
+            <wsdl:output message="tns:AddReQuoteHistorySoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="AddLeadAndHistory">
+            <wsdl:input message="tns:AddLeadAndHistorySoapIn" />
+            <wsdl:output message="tns:AddLeadAndHistorySoapOut" />
+        </wsdl:operation>
+        <wsdl:operation name="AddLeadList">
+            <wsdl:input message="tns:AddLeadListSoapIn" />
+            <wsdl:output message="tns:AddLeadListSoapOut" />
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="wsSoap" type="tns:wsSoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="GetCampaigns">
+            <soap:operation soapAction="http://donkey/ws.asmx/GetCampaigns" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetStates">
+            <soap:operation soapAction="http://donkey/ws.asmx/GetStates" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetCountries">
+            <soap:operation soapAction="http://donkey/ws.asmx/GetCountries" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAssignedToCompanies">
+            <soap:operation soapAction="http://donkey/ws.asmx/GetAssignedToCompanies" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAssignedToUsers">
+            <soap:operation soapAction="http://donkey/ws.asmx/GetAssignedToUsers" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetLeadLogTypes">
+            <soap:operation soapAction="http://donkey/ws.asmx/GetLeadLogTypes" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetLeadMilestones">
+            <soap:operation soapAction="http://donkey/ws.asmx/GetLeadMilestones" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetCustomDropdowns">
+            <soap:operation soapAction="http://donkey/ws.asmx/GetCustomDropdowns" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetLeadStatuses">
+            <soap:operation soapAction="http://donkey/ws.asmx/GetLeadStatuses" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetCustomColumnNames">
+            <soap:operation soapAction="http://donkey/ws.asmx/GetCustomColumnNames" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetCustomColumns">
+            <soap:operation soapAction="http://donkey/ws.asmx/GetCustomColumns" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetLeadById">
+            <soap:operation soapAction="http://donkey/ws.asmx/GetLeadById" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetCustomColumnsByProviderAndType">
+            <soap:operation soapAction="http://donkey/ws.asmx/GetCustomColumnsByProviderAndType" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="UpdateLead">
+            <soap:operation soapAction="http://donkey/ws.asmx/UpdateLead" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="AddLead">
+            <soap:operation soapAction="http://donkey/ws.asmx/AddLead" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="AddLeadXML">
+            <soap:operation soapAction="http://donkey/ws.asmx/AddLeadXML" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="AddLeadLog">
+            <soap:operation soapAction="http://donkey/ws.asmx/AddLeadLog" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="AddReQuoteHistory">
+            <soap:operation soapAction="http://donkey/ws.asmx/AddReQuoteHistory" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="AddLeadAndHistory">
+            <soap:operation soapAction="http://donkey/ws.asmx/AddLeadAndHistory" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="AddLeadList">
+            <soap:operation soapAction="http://donkey/ws.asmx/AddLeadList" style="document" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="wsSoap12" type="tns:wsSoap">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="GetCampaigns">
+            <soap12:operation soapAction="http://donkey/ws.asmx/GetCampaigns" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetStates">
+            <soap12:operation soapAction="http://donkey/ws.asmx/GetStates" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetCountries">
+            <soap12:operation soapAction="http://donkey/ws.asmx/GetCountries" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAssignedToCompanies">
+            <soap12:operation soapAction="http://donkey/ws.asmx/GetAssignedToCompanies" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAssignedToUsers">
+            <soap12:operation soapAction="http://donkey/ws.asmx/GetAssignedToUsers" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetLeadLogTypes">
+            <soap12:operation soapAction="http://donkey/ws.asmx/GetLeadLogTypes" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetLeadMilestones">
+            <soap12:operation soapAction="http://donkey/ws.asmx/GetLeadMilestones" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetCustomDropdowns">
+            <soap12:operation soapAction="http://donkey/ws.asmx/GetCustomDropdowns" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetLeadStatuses">
+            <soap12:operation soapAction="http://donkey/ws.asmx/GetLeadStatuses" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetCustomColumnNames">
+            <soap12:operation soapAction="http://donkey/ws.asmx/GetCustomColumnNames" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetCustomColumns">
+            <soap12:operation soapAction="http://donkey/ws.asmx/GetCustomColumns" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetLeadById">
+            <soap12:operation soapAction="http://donkey/ws.asmx/GetLeadById" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetCustomColumnsByProviderAndType">
+            <soap12:operation soapAction="http://donkey/ws.asmx/GetCustomColumnsByProviderAndType" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="UpdateLead">
+            <soap12:operation soapAction="http://donkey/ws.asmx/UpdateLead" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="AddLead">
+            <soap12:operation soapAction="http://donkey/ws.asmx/AddLead" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="AddLeadXML">
+            <soap12:operation soapAction="http://donkey/ws.asmx/AddLeadXML" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="AddLeadLog">
+            <soap12:operation soapAction="http://donkey/ws.asmx/AddLeadLog" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="AddReQuoteHistory">
+            <soap12:operation soapAction="http://donkey/ws.asmx/AddReQuoteHistory" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="AddLeadAndHistory">
+            <soap12:operation soapAction="http://donkey/ws.asmx/AddLeadAndHistory" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="AddLeadList">
+            <soap12:operation soapAction="http://donkey/ws.asmx/AddLeadList" style="document" />
+            <wsdl:input>
+                <soap12:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ws">
+        <wsdl:port name="wsSoap" binding="tns:wsSoap">
+            <soap:address location="http://donkey/login/ws/ws.asmx" />
+        </wsdl:port>
+        <wsdl:port name="wsSoap12" binding="tns:wsSoap12">
+            <soap12:address location="http://donkey/login/ws/ws.asmx" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
