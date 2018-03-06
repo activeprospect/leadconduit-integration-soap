@@ -376,10 +376,11 @@
         return done();
       });
     });
+
     it('should set multiple headers', function(done) {
       var vars;
       this.service = nock('http://donkey').post('/login/ws/ws.asmx', function(body) {
-        return body.indexOf('<SessionHeader xmlns="urn:foo.bar"><sessionId>88774421</sessionId></SessionHeader><OtherHeader xmlns="urn:foo.other"><Id>4321</Id></OtherHeader>') >= 0;
+        return body.match(/<SessionHeader xmlns="urn:foo.bar"><sessionId>88774421<\/sessionId><\/SessionHeader><OtherHeader xmlns="urn:foo.other"><Id>4321<\/Id><\/OtherHeader>/m) >= 0;
       }).reply(200, success, {
         'Content-Type': 'text/xml'
       });
@@ -401,6 +402,7 @@
         return done();
       });
     });
+
     it('should have a request body with the root element namespace prefix and xlmns attributes when specified', function(done) {
       var vars;
       this.service = nock('http://donkey').post('/login/ws/ws.asmx', function(body) {
