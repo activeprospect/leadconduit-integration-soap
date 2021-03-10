@@ -948,7 +948,7 @@
         return assert.equal(soap.validate({
           url: 'http://foo',
           outcome_on_match: 'donkey'
-        }), "Outcome on match must be 'success' or 'failure'");
+        }), "Outcome on match must be 'success', 'failure', or 'error'");
       });
       it('should pass validation', function() {
         return assert.isUndefined(soap.validate({
