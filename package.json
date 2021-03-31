@@ -1,6 +1,6 @@
 {
   "name": "leadconduit-soap",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "LeadConduit SOAP integration",
   "main": "index.js",
   "scripts": {
