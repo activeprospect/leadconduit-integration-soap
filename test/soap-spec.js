@@ -937,28 +937,28 @@
       });
       it('should require function', function() {
         assert.equal(soap.validate({
-          url: 'http://foo'
+          url: 'http://foo.com'
         }), 'Function is required');
         return assert.equal(soap.validate({
-          url: 'http://foo',
+          url: 'http://foo.com',
           "function": 'donkey/kong'
         }), 'Function must have valid name');
       });
       it('should require valid search outcome', function() {
         return assert.equal(soap.validate({
-          url: 'http://foo',
+          url: 'http://foo.com',
           outcome_on_match: 'donkey'
         }), "Outcome on match must be 'success', 'failure', or 'error'");
       });
       it('should pass validation', function() {
         return assert.isUndefined(soap.validate({
-          url: 'http://foo',
+          url: 'http://foo.com',
           "function": 'whatever'
         }));
       });
       return it('should require valid SOAP version', function() {
         return assert.equal(soap.validate({
-          url: 'http://foo',
+          url: 'http://foo.com',
           "function": 'whatever',
           version: '0'
         }), 'Must be valid SOAP version: 1.1 or 1.2');
