@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
+    "leadconduit-types": "^4.23.2",
     "mocha": "^8.3.0",
     "nock": "^12.0.0"
   }
