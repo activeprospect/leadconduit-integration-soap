@@ -4,7 +4,9 @@
   "description": "LeadConduit SOAP integration",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "fixlint": "eslint . --fix",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -19,8 +21,6 @@
     "leadconduit-custom": "^2.19.2"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "mocha": "^8.3.0",
-    "nock": "^12.0.0"
+    "@activeprospect/integration-dev-dependencies": "^2.0.1"
   }
 }
